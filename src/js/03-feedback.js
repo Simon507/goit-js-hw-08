@@ -16,6 +16,8 @@ function updateOutput() {
     const getData = JSON.parse(getDataJSON);
     userEmail.value = getData.email;
     userMessage.value = getData.message;
+    rest.email = userEmail.value;
+    rest.message = userMessage.value;
   } catch (error) {
     // console.log(error.name); // "SyntaxError"
     // console.log(error.message); // Unexpected token W in JSON at position 0
@@ -27,7 +29,6 @@ form.addEventListener('input', throttle(addValues, 500));
 
 function addValues(evt) {
   evt.preventDefault();
-
   if (evt.target.name == 'email') {
     rest.email = evt.target.value;
   } else if (evt.target.name == 'message') {
@@ -44,5 +45,4 @@ function submit(evt) {
   userEmail.value = '';
   userMessage.value = '';
   localStorage.removeItem(LOCALSTORAGE_KEY);
-  //   form.removeEventListener('submit', submit);  нужно это делать?
 }
